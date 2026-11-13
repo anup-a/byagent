@@ -7,3 +7,6 @@ deploy/box/.env
 deploy/box/*.tgz
 *.test
 cli/runtime/
+
+# go build output of cmd/byagent-mcp at the repo root
+/byagent-mcp
