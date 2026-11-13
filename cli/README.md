@@ -79,6 +79,18 @@ This adds a PostToolUse hook. When the agent writes a `.html` or `.md` page, the
 
 It stays out of the way: each file gets at most one nudge per session, with five nudges per session in total. It skips code trees (`src`, `public`, `node_modules`, ...), repo docs (`README.md`, `CLAUDE.md`, `AGENTS.md`, ...) and agent config under `~/.claude` and `~/.codex`. Set `BYAGENT_NUDGE=0` to silence it. The hook runs `byagent hooks run`, so install the CLI globally.
 
+## Links to work hosted elsewhere
+
+```
+byagent link <url> [--title "<t>"] [--project <name>]   # file a page that lives somewhere else
+byagent links [--search <text>] [--project <name>]
+byagent unlink <id|url>                                  # removes the link, never the page
+```
+
+`link` files a Vercel, Netlify, Cloudflare, GitHub Pages or here.now deploy, a Claude artifact, or a ChatGPT or Grok share link in your dashboard, next to the pages byagent hosts. byagent keeps the URL and its labels, never a copy. Running it again with the same URL refreshes the link, so it is safe after every deploy.
+
+`byagent hooks install claude` also adds a link hook for Claude Code: when a deploy command (`vercel`, `netlify deploy`, `wrangler deploy`, `firebase deploy`, `surge` and others) prints a URL on a hosting service, the hook files it for you. Nothing else is filed, so `curl x.vercel.app` or `vercel logs` are ignored. Set `BYAGENT_LINK=0` to turn it off.
+
 ## Briefs
 
 A brief is the page an agent leaves for whoever picks the work up next: another agent, another machine, or you.
